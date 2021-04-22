@@ -16,10 +16,6 @@ public class DataHelper {
         return new AuthInfo("vasya", "qwerty123");
     }
 
-    public static AuthInfo getInvalidPass() {
-        return new AuthInfo("vasya", "123");
-    }
-
     @Value
     public static class VerificationCode {
         private String login;
@@ -30,13 +26,31 @@ public class DataHelper {
     public static class Card {
         private String id;
         private String number;
-        private String balance;
+        private int balance;
+    }
+
+    @Value
+    public static class Cards {
+        Card[] fistCard;
+        Card[] secondCard;
     }
 
     @Value
     public static class Transfer {
-        private String fromCard;
-        private String toCard;
+        private String from;
+        private String to;
         private String amount;
+    }
+
+    public static Transfer transferFromSecondToFirst() {
+        return new Transfer ("5559 0000 0000 0002", "5559 0000 0000 0001", "5000");
+    }
+
+    public static Transfer transferFromFirstToAnotherUser() {
+        return new Transfer ("5559 0000 0000 0001", "5559 0000 0000 0008", "5000");
+    }
+
+    public static Transfer transferFromAnotherUserToFirst() {
+        return new Transfer ("5559 0000 0000 0008", "5559 0000 0000 0001", "5000");
     }
 }
